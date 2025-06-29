@@ -342,7 +342,63 @@ const projects = [
     "imgAlt": "RoseEveningPrimrose",
     "link": "https://www.inaturalist.org/taxa/78247-Oenothera-rosea",
     "icon": "rose-outline"
-  }
+  },
+  {
+    "title": "Raphanus raphanistrum",
+    "category": "flora",
+    "imgSrc": "./assets/images/photography/wildradish.jpg",
+    "imgAlt": "Wild Radish",
+    "link": "https://www.inaturalist.org/taxa/55411-Raphanus-raphanistrum",
+    "icon": "rose-outline"
+  },
+  {
+    "title": "Buphthalmum salicifolium",
+    "category": "flora",
+    "imgSrc": "./assets/images/photography/yellowoxeye.jpg",
+    "imgAlt": "Yellow Oxeye",
+    "link": "https://www.inaturalist.org/taxa/357176-Buphthalmum-salicifolium",
+    "icon": "rose-outline"
+  },
+  {
+    "title": "Fumaria reuteri",
+    "category": "flora",
+    "imgSrc": "./assets/images/photography/martinsramping-fumitory.jpg",
+    "imgAlt": "Martin's Ramping-Fumitory",
+    "link": "https://www.inaturalist.org/taxa/132710-Fumaria-reuteri",
+    "icon": "rose-outline"
+  },
+  {
+    "title": "Dimorphotheca ecklonis",
+    "category": "flora",
+    "imgSrc": "./assets/images/photography/blue-and-whitedaisybush.jpg",
+    "imgAlt": "Blue-and-white Daisybush",
+    "link": "https://www.inaturalist.org/taxa/76660-Dimorphotheca-ecklonis",
+    "icon": "rose-outline"
+  },
+  {
+    "title": "Phoenicurus ochruros",
+    "category": "birds",
+    "imgSrc": "./assets/images/photography/blackredstart.jpg",
+    "imgAlt": "Black Redstart",
+    "link": "https://www.inaturalist.org/taxa/13000-Phoenicurus-ochruros",
+    "icon": "egg-outline"
+  },
+{
+    "title": "Oxalis pes-caprae",
+    "category": "flora",
+    "imgSrc": "./assets/images/photography/bermudabuttercup.jpg",
+    "imgAlt": "Bermuda Buttercup",
+    "link": "https://www.inaturalist.org/taxa/53169-Oxalis-pes-caprae",
+    "icon": "rose-outline"
+  },
+  {
+    "title": "Calliphora vicina",
+    "category": "bugs",
+    "imgSrc": "./assets/images/photography/blueblowfly.jpg",
+    "imgAlt": "Blue Blowfly",
+    "link": "https://www.inaturalist.org/taxa/119115-Calliphora-vicina",
+    "icon": "bug-outline"
+  },
 ];
 
 export default projects;
