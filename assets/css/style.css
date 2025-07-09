@@ -352,6 +352,17 @@ main {
   width: max-content;
   padding: 3px 12px;
   border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.info-content .login-btn {
+  color: var(--orange-yellow-crayola);
+  background: var(--onyx);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+  width: max-content;
+  padding: 3px 12px;
+  border-radius: 5px;
 }
 
 .info_more-btn {
@@ -1407,6 +1418,11 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .info-content .title { padding: 5px 18px; }
 
+  .info-content .login-btn {
+    padding: 5px 12px;
+    font-size: var(--fs-8);
+  }
+
   .info_more-btn {
     top: -30px;
     right: -30px;
@@ -1909,6 +1925,8 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .info-content .title { margin: auto; }
+
+  .info-content .login-btn { margin:auto; }
 
   .info_more-btn { display: none; }
 

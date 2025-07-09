@@ -3,6 +3,10 @@
 // script.js
 import projects from './photo-items.js';
 
+// Import Firebase modules
+import { auth } from './firebase.js';
+import { GithubAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
 // element toggle function
 const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
@@ -13,6 +17,94 @@ const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 // sidebar toggle functionality for mobile
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
 
+// Create the provider
+const provider = new GithubAuthProvider();
+
+// GitHub login button
+const githubLoginBtn = document.getElementById('github-login-btn');
+
+// Auth state management
+let isAuthenticated = false;
+const adminUserIDs  = ['37782057'];
+let isAdmin       = false;
+
+// Function to update button and admin elements based on auth state
+function updateAuthButton(user) {
+  if (user) {
+    // User is signed in
+    isAuthenticated = true;
+    isAdmin = adminUserIDs.includes(user.uid); 
+    githubLoginBtn.textContent = 'Logout';
+    githubLoginBtn.style.backgroundColor = 'var(--vegas-gold)';
+    githubLoginBtn.style.color = 'var(--white-1)';
+    
+    if (isAdmin) {
+      // User is an admin
+      console.log('UID:', user.uid);
+      showAdminElements();
+    }
+
+  } else {
+    // User is signed out
+    isAuthenticated = false;
+    githubLoginBtn.textContent = 'Authenticate';
+    githubLoginBtn.style.backgroundColor = 'var(--onyx)';
+    
+    // Hide admin elements
+    hideAdminElements();
+  }
+}
+
+// Function to show admin-only elements
+function showAdminElements() {
+  // Show admin buttons/forms
+  const adminElements = document.querySelectorAll('.admin-only');
+  adminElements.forEach(element => {
+    element.style.display = 'block';
+  });
+  
+  // Example: Show "Add Project" button in photography section
+  const addProjectBtn = document.getElementById('add-project-btn');
+  if (addProjectBtn) {
+    addProjectBtn.style.display = 'block';
+  }
+}
+
+// Function to hide admin-only elements
+function hideAdminElements() {
+  // Hide admin buttons/forms
+  const adminElements = document.querySelectorAll('.admin-only');
+  adminElements.forEach(element => {
+    element.style.display = 'none';
+  });
+  
+  // Example: Hide "Add Project" button in photography section
+  const addProjectBtn = document.getElementById('add-project-btn');
+  if (addProjectBtn) {
+    addProjectBtn.style.display = 'none';
+  }
+}
+
+// Listen for auth state changes
+onAuthStateChanged(auth, (user) => {
+  updateAuthButton(user);
+});
+
+// Handle login/logout button click
+githubLoginBtn.addEventListener('click', () => {
+  if (isAuthenticated) {
+    // User is logged in, so log them out
+    signOut(auth).catch(error => {
+      alert("Logout failed: " + error.message);
+    });
+  } else {
+    // User is not logged in, so log them in
+    signInWithPopup(auth, provider)
+      .catch(error => {
+        alert("GitHub login failed: " + error.message);
+      });
+  }
+});
 
 // testimonials variables
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
