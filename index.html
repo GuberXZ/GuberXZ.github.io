@@ -22,11 +22,9 @@
 <body>
 
   <!-- #MAIN -->
-
   <main>
 
     <!-- #SIDEBAR -->
-
     <aside class="sidebar" data-sidebar>
 
       <div class="sidebar-info">
@@ -40,7 +38,7 @@
 
           <p class="title">Biomedical Engineer</p>
           <p class="name"></p>
-          <button class="login-btn" id="github-login-btn">Authenticate</button>
+          <button class="login-btn" github-login-btn>Authenticate</button>
           
         </div>
 
@@ -488,7 +486,10 @@
       <article class="portfolio" data-page="portfolio">
 
         <header>
-          <h2 class="h2 article-title">Portfolio</h2>
+          <h2 class="h2 article-title">
+            Portfolio
+            <span id="add-project-btn" class="admin-only title-plus" style="display: none;">+</span>
+          </h2>
         </header>
 
         <section class="projects">
@@ -598,16 +599,57 @@
           </ul>
 
         </section>
-
+        
+        <div id="add-portfolio-modal" class="admin-only portfolio-modal-overlay" style="display: none !important;">
+          <div class="portfolio-modal-content">
+            <div class="modal-header">
+              <h3>Add New Portfolio Item</h3>
+              <button id="close-portfolio-modal" class="close-btn">&times;</button>
+            </div>
+            
+            <form id="add-portfolio-form" class="portfolio-form">
+              <div class="form-group">
+                <label for="portfolio-title">Project Title</label>
+                <input type="text" id="portfolio-title" required placeholder="e.g., My Web App">
+              </div>
+              
+              <div class="form-group">
+                <label for="portfolio-category">Category</label>
+                <select id="portfolio-category" required>
+                  <option value="web applications">Web Applications</option>
+                  <option value="academic work">Academic Work</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="portfolio-link">Project Link/URL</label>
+                <input type="url" id="portfolio-link" required placeholder="https://example.com">
+              </div>
+              
+              <div class="form-group">
+                <label for="portfolio-image">Project Image</label>
+                <input type="file" id="portfolio-image" accept="image/*" required>
+                <div id="image-preview"></div>
+              </div>
+              
+              <div class="form-actions">
+                <button type="button" id="cancel-portfolio" class="btn-secondary">Cancel</button>
+                <button type="submit" class="btn-primary">Add Project</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </article>
 
 
       <!-- #PHOTOGRAPHY [3:2] - inaturalist.org -->
-
       <article class="photography" data-page="photography">
 
         <header>
-          <h2 class="h2 article-title">Photography</h2>
+          <h2 class="h2 article-title">
+            Photography
+            <span id="add-photo-btn" class="admin-only title-plus" style="display: none;">+</span>
+          </h2>
         </header>
 
         <section class="projects">
@@ -676,7 +718,6 @@
           </div>
           
           <ul class="project-list">
-            <!-- Project items will be generated dynamically here -->
           </ul>
 
           <div class="pagination-controls">
@@ -689,11 +730,54 @@
           
         </section>
 
+        <div id="add-photo-modal" class="admin-only photo-modal-overlay" style="display: none;">
+          <div class="photo-modal-content">
+            <div class="modal-header">
+              <h3>Add New Photo Item</h3>
+              <button id="close-photo-modal" class="close-btn">&times;</button>
+            </div>
+            
+            <form id="add-photo-form" class="photo-form">
+              <div class="form-group">
+                <label for="photo-title">Binomial Numenclature</label>
+                <input type="text" id="photo-title" required placeholder="e.g., Calliphora vicina">
+              </div>
+              
+              <div class="form-group">
+                <label for="photo-alt">Common Name</label>
+                <input type="text" id="photo-alt" required placeholder="e.g., Blue Blowfly">
+              </div>
+
+              <div class="form-group">
+                <label for="photo-category">Category</label>
+                <select id="photo-category" required>
+                  <option value="bugs">Bugs</option>
+                  <option value="birds">Birds</option>
+                  <option value="flora">Flora</option>
+                  <option value="funga">Funga</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="photo-link">iNaturalist Link</label>
+                <input type="url" id="photo-link" required placeholder="https://www.inaturalist.org/taxa/...">
+              </div>
+              
+              <div class="form-group">
+                <label for="photo-image">Photo Image</label>
+                <input type="file" id="photo-image" accept="image/*" required>
+              </div>
+              
+              <div class="form-actions">
+                <button type="button" id="cancel-photo" class="btn-secondary">Cancel</button>
+                <button type="submit" class="btn-primary">Add Photo</button>
+              </div>
+            </form>
+          </div>
       </article>
 
 
       <!-- #CONTACT -->
-
       <article class="contact" data-page="contact">
 
         <header>
@@ -736,8 +820,6 @@
     </div>
 
   </main>
-
-
 
 
 
