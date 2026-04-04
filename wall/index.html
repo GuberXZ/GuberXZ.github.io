@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Wall</title>
+    <style>
+        /* 1. THEME VARIABLES (From your reference) */
+        :root {
+            --fs-1: 36px;
+            --text-gradient-yellow: linear-gradient(to right, hsl(45, 100%, 72%), hsl(35, 100%, 68%));
+            --jet: hsl(0, 0%, 22%);
+            --eerie-black-2: hsl(240, 2%, 12%);
+            --smoky-black: hsl(0, 0%, 7%);
+            --white-2: hsl(0, 0%, 98%);
+            --orange-yellow-crayola: hsl(45, 100%, 72%);
+            --light-gray-70: hsla(0, 0%, 84%, 0.7);
+            --transition-1: 0.25s ease;
+            --ff-poppins: 'Poppins', sans-serif;
+            --border-gradient-onyx: linear-gradient(
+                to bottom right, 
+                hsl(0, 0%, 10%) 0%, 
+                hsla(0, 0%, 25%, 0) 50%
+            );
+        }
+        
+        /* Ensure everything calculates width correctly */
+        *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; 
+        }
+
+        .masonry-header {
+        width: 100%;
+        display: flex;
+        justify-content: center; 
+        padding: 60px 20px 40px;
+        }
+
+        .article-title.centered {
+        text-align: center;
+         font-size: clamp(48px, 7vw, 72px);
+        letter-spacing: -2px; 
+        width: max-content; 
+        margin: 0 auto;
+        }
+
+        .article-title.centered::after {
+        content: "";
+        position: absolute;
+        bottom: -10px; 
+        left: 50%;
+        transform: translateX(-50%); 
+        width: 60px; 
+        height: 4px;
+        background: var(--text-gradient-yellow);
+        border-radius: 3px;
+        }
+
+        .portfolio {
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        }
+
+        .masonry-layout {
+        display: flex;
+        width: 100%;
+        padding: 0 20px 20px; 
+        box-sizing: border-box; 
+        }
+
+        .article-title {
+        position: relative;
+        padding-bottom: 7px;
+        color: var(--white-2);
+        text-transform: capitalize;
+        font-family: var(--ff-poppins);
+        font-size: var(--fs-1);
+        }
+
+        .article-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 295px;
+        height: 3px;
+        background: var(--text-gradient-yellow);
+        border-radius: 3px;
+        }
+
+        html, body {
+        width: 100%;
+        overflow-x: hidden; 
+        background: var(--smoky-black) url('/assets/css/noise-bg.png') repeat;
+        }
+
+        .portfolio {
+        width: 100%;
+        max-width: 100vw; 
+        overflow-x: hidden; 
+        }
+
+        .masonry-layout {
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        margin: 0;
+        gap: 10px;
+        box-sizing: border-box; 
+        }
+        
+        .masonry-column {
+        flex: 1;
+        min-width: 0; 
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        }
+
+        .masonry-item {
+        position: relative;
+        background-color: var(--eerie-black-2); 
+        background-image: var(--border-gradient-onyx);
+        border: 1px solid var(--jet);
+        border-radius: 20px;
+        padding: 15px;
+        box-shadow: var(--shadow-1);
+        z-index: 1;
+        transition: var(--transition-1);
+        overflow: hidden;
+        }
+
+        .masonry-item::before {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        background: var(--bg-gradient-jet); 
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 1; 
+        }
+
+        .masonry-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+        display: block;
+        transition: var(--transition-1);
+        }
+
+        .masonry-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-2);
+        }
+
+        .masonry-item:hover img {
+        transform: scale(1.02);
+        }
+
+        .item-content {
+        margin-top: 15px;
+        }
+
+        .item-content h3 {
+        color: var(--white-2);
+        font-size: var(--fs-4);
+        font-weight: 700;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+        margin-left: 2px;
+        }
+
+        .item-content p {
+        color: var(--orange-yellow-crayola);
+        font-size: var(--fs-7);
+        font-weight: var(--fw-300);
+        }
+
+        /* Mobile specific styling */
+        @media (max-width: 800px) {
+            body { padding: 10px; }
+            .masonry-layout { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <article class="portfolio active">
+        <header class="masonry-header">
+            <h2 class="h2 article-title">I saw on my wall</h2>
+        </header>
+    <div class="masonry-layout">
+        <div class="masonry-column"> 
+            <div class="masonry-item" data-sort-index="1">
+                <img src="wall_photos/lifeofafly.jpg" alt="Item 1"> 
+                <div class="item-content"><h3>The death of a fly</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="5">
+                <img src="wall_photos/bigthoraxspider.jpg" alt="Item 5">
+                <div class="item-content"><h3>A big thorax spider</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="9">
+                <img src="wall_photos/giraffeweevil.jpg" alt="Item 9">
+                <div class="item-content"><h3>A giraffe weevil</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="13">
+                <img src="wall_photos/amothinitsbag.jpg" alt="Item 13">
+                <div class="item-content"><h3>A moth in its bag</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="17">
+                <img src="wall_photos/aroachstaringintothevoid.jpg" alt="Item 17">
+                <div class="item-content"><h3>A roach staring into the void</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="21">
+                <img src="wall_photos/beetlelarva.jpg" alt="Item 21">
+                <div class="item-content"><h3>A beetle larva</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="25">
+                <img src="wall_photos/greenbeetle.jpg" alt="Item 25">
+                <div class="item-content"><h3>A green beetle</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="29">
+                <img src="wall_photos/moneyspider.jpg" alt="Item 29">
+                <div class="item-content"><h3>A money spider</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="33">
+                <img src="wall_photos/nonbitingfly.jpg" alt="Item 33">
+                <div class="item-content"><h3>A non-biting fly</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="37">
+                <img src="wall_photos/rockysituation.jpg" alt="Item 37">
+                <div class="item-content"><h3>A rocky situation</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="41">
+                <img src="wall_photos/weevildoingawarcry.jpg" alt="Item 41">
+                <div class="item-content"><h3>A Weevil Doing a War Cry</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="45">
+                <img src="wall_photos/pseudoscorpion.jpg" alt="Item 45">
+                <div class="item-content"><h3>A pseudoscorpion</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="49">
+                <img src="wall_photos/slimyguyonamission.jpg" alt="Item 49">
+                <div class="item-content"><h3>A Slimy Guy on a Mission</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="49">
+                <img src="wall_photos/roundbeetle.jpg" alt="Item 49">
+                <div class="item-content"><h3>A Round Beetle</h3></div>
+            </div>
+        </div>
+
+        <div class="masonry-column">
+            <div class="masonry-item" data-sort-index="2">
+                <img src="wall_photos/acultmeeting.jpg" alt="Item 2">
+                <div class="item-content"><h3>A cult meeting</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="6">
+                <img src="wall_photos/snailinthefog.jpg" alt="Item 6">
+                <div class="item-content"><h3>Snail in the fog</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="10">
+                <img src="wall_photos/somekindofiberianlizard.jpg" alt="Item 10">
+                <div class="item-content"><h3>Some Kind of Iberian Lizard</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="14">
+                <img src="wall_photos/coolcricket.jpg" alt="Item 14">
+                <div class="item-content"><h3>A cool cricket</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="18">
+                <img src="wall_photos/ablip.jpg" alt="Item 18">
+                <div class="item-content"><h3>A Blip</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="22">
+                <img src="wall_photos/artisticbeetle.jpg" alt="Item 22">
+                <div class="item-content"><h3>An Artistic Beetle</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="26">
+                <img src="wall_photos/bioluminescentlarva.jpg" alt="Item 26">
+                <div class="item-content"><h3>A Bioluminescent Larva</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="30">
+                <img src="wall_photos/isopodsniffingaround.jpg" alt="Item 30">
+                <div class="item-content"><h3>An Isopod Sniffing Around</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="34">
+                <img src="wall_photos/somekindofiberianlizard.jpg" alt="Item 34">
+                <div class="item-content"><h3>Some Kind of Iberian Lizard</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="38">
+                <img src="wall_photos/smallmoth.jpg" alt="Item 38">
+                <div class="item-content"><h3>A Small Moth</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="42">
+                <img src="wall_photos/suspicioustermite.jpg" alt="Item 42">
+                <div class="item-content"><h3>A Suspicious Termite</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="46">
+                <img src="wall_photos/yellowlady.jpg" alt="Item 46">
+                <div class="item-content"><h3>A Yellow Lady</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="50">
+                <img src="wall_photos/bugonstitls.jpg" alt="Item 50">
+                <div class="item-content"><h3>A Bug on a Stilts</h3></div>
+            </div>
+        </div>
+
+        <div class="masonry-column">
+            <div class="masonry-item" data-sort-index="3">
+                <img src="wall_photos/yellowinstone.jpg" alt="Item 3">
+                <div class="item-content"><h3>An Yellow one in stone</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="7">
+                <img src="wall_photos/ingeniousseed.jpg" alt="Item 7">
+                <div class="item-content"><h3>An Ingenious Seed</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="11">
+                <img src="wall_photos/fluffybuddy.jpg" alt="Item 11">
+                <div class="item-content"><h3>A Fluffy buddy</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="15">
+                <img src="wall_photos/afireguy.jpg" alt="Item 15">
+                <div class="item-content"><h3>A Fire Guy</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="19">
+                <img src="wall_photos/aphilosopherofmoss.jpg" alt="Item 19">
+                <div class="item-content"><h3>A philosopher of moss</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="24">
+                <img src="wall_photos/justaant.jpg" alt="Item 24">
+                <div class="item-content"><h3>Just Ant</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="27">
+                <img src="wall_photos/falsebeetle.jpg" alt="Item 27">
+                <div class="item-content"><h3>A False Beetle</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="31">
+                <img src="wall_photos/lacewing.jpg" alt="Item 31">
+                <div class="item-content"><h3>A Lacewing</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="35">
+                <img src="wall_photos/scarycentipede.jpg" alt="Item 35">
+                <div class="item-content"><h3>A Scary Centipede</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="39">
+                <img src="wall_photos/weevilonaledge.jpg" alt="Item 39">
+                <div class="item-content"><h3>A Weevil on a Ledge</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="43">
+                <img src="wall_photos/shadowysnail.jpg" alt="Item 43">
+                <div class="item-content"><h3>A Shadowy Snail</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="47">
+                <img src="wall_photos/spikytrain.jpg" alt="Item 47">
+                <div class="item-content"><h3>A Spiky Train</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="51">
+                <img src="wall_photos/weevil.jpg" alt="Item 51">
+                <div class="item-content"><h3>A Weeeeevil</h3></div>
+            </div>
+        </div>
+        <div class="masonry-column">
+            <div class="masonry-item" data-sort-index="4">
+                <img src="wall_photos/amilipedecaralho.jpg" alt="Item 4">
+                <div class="item-content"><h3>A Portuguese millipede</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="8">
+                <img src="wall_photos/apredatoranditsprey.jpg" alt="Item 8">
+                <div class="item-content"><h3>A predator and its prey</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="12">
+                <img src="wall_photos/leggedworm.jpg" alt="Item 12">
+                <div class="item-content"><h3>A Legged worm</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="16">
+                <img src="wall_photos/mintymoth.jpg" alt="Item 16"> 
+                <div class="item-content"><h3>A minty moth</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="20">
+                <img src="wall_photos/atrashyshell.jpg" alt="Item 20">
+                <div class="item-content"><h3>A trashy shell</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="24">
+                <img src="wall_photos/lonefly.jpg" alt="Item 24">
+                <div class="item-content"><h3>A Lone Fly</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="28">
+                <img src="wall_photos/leafhopperonacorner.jpg" alt="Item 28">
+                <div class="item-content"><h3>A Leafhopper on a Corner</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="32">
+                <img src="wall_photos/outfocusbee.jpg" alt="Item 32">
+                <div class="item-content"><h3>An out of focus bee</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="36">
+                <img src="wall_photos/shinyisopod.jpg" alt="Item 36">
+                <div class="item-content"><h3>A Shiny Isopod</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="40">
+                <img src="wall_photos/sicksniper.jpg" alt="Item 40">
+                <div class="item-content"><h3>A Sick Sniper</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="44">
+                <img src="wall_photos/upsidedownbeetle.jpg" alt="Item 44">
+                <div class="item-content"><h3>An Upside Down Beetle</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="48">
+                <img src="wall_photos/wavyspider.jpg" alt="Item 48">
+                <div class="item-content"><h3>A Wavy Spider</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="52">
+                <img src="wall_photos/spooder.jpg" alt="Item 52">
+                <div class="item-content"><h3>A Spooder</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sortMasonry = () => {
+            const breakpoint = 800;
+            const container = document.querySelector('.masonry-layout');
+            if (!container) return;
+            const columnElements = Array.from(container.querySelectorAll('.masonry-column'));
+            const numColumns = columnElements.length;
+
+            if (window.innerWidth < breakpoint) {
+                // Flatten to 1 column for mobile
+                let needsFlattening = false;
+                if (numColumns > 0 && columnElements[0].style.display !== 'none') {
+                    for (const col of columnElements) {
+                        if (col.querySelector('.masonry-item')) { needsFlattening = true; break; }
+                    }
+                }
+                if (needsFlattening) {
+                    const allItems = Array.from(document.querySelectorAll('.masonry-layout .masonry-item'));
+                    allItems.sort((a, b) => parseInt(a.dataset.sortIndex) - parseInt(b.dataset.sortIndex));
+                    columnElements.forEach(column => { column.innerHTML = ''; column.style.display = 'none'; });
+                    allItems.forEach(item => container.appendChild(item));
+                }
+            } else {
+                // Redistribute to 3 columns for desktop
+                const itemsAreFlatInContainer = container.querySelector(':scope > .masonry-item');
+                if (numColumns > 0 && (columnElements[0].style.display === 'none' || itemsAreFlatInContainer)) {
+                    const columnMap = {};
+                    columnElements.forEach((column, index) => {
+                        column.style.display = 'flex';
+                        column.innerHTML = '';
+                        columnMap[index] = column;
+                    });
+                    const allItemsToRedistribute = Array.from(document.querySelectorAll('.masonry-layout .masonry-item'));
+                    allItemsToRedistribute.sort((a, b) => parseInt(a.dataset.sortIndex) - parseInt(b.dataset.sortIndex));
+                    allItemsToRedistribute.forEach(item => {
+                        const sortIndex = parseInt(item.dataset.sortIndex);
+                        const targetColumnIndex = (sortIndex - 1) % numColumns;
+                        columnMap[targetColumnIndex].appendChild(item);
+                    });
+                }
+            }
+        };
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(sortMasonry, 250);
+        });
+        sortMasonry();
+    </script>
+</body>
+</html>
