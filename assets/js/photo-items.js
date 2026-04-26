@@ -24,27 +24,11 @@ const projects = [
     "icon": "rose-outline"
   },
   {
-    "title": "Mantis Octospilota",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/mantis.jpg",
-    "imgAlt": "Mantis",
-    "link": "https://www.inaturalist.org/taxa/566608-Mantis-octospilota",
-    "icon": "bug-outline"
-  },
-  {
     "title": "Timarcha tenebricosa",
     "category": "bugs",
     "imgSrc": "./assets/images/photography/bloodybeetle.jpg",
     "imgAlt": "RunningSpider",
     "link": "https://www.inaturalist.org/taxa/118838-Timarcha-tenebricosa",
-    "icon": "bug-outline"
-  },
-  {
-    "title": "Tibellus oblongus",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/runningspider.jpg",
-    "imgAlt": "RunningSpider",
-    "link": "https://www.inaturalist.org/taxa/153855-Tibellus-oblongus",
     "icon": "bug-outline"
   },
   {
@@ -96,27 +80,11 @@ const projects = [
     "icon": "bug-outline"
   },
   {
-    "title": "Sarcophaga carnaria",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/fleshfly.jpg",
-    "imgAlt": "FleshFly",
-    "link": "https://www.inaturalist.org/taxa/52910-Sarcophagidae",
-    "icon": "bug-outline"
-  },
-  {
     "title": "Holocnemus pluchei",
     "category": "bugs",
     "imgSrc": "./assets/images/photography/marbledcellarspider.jpg",
     "imgAlt": "MarbledCellarSpider",
     "link": "https://www.inaturalist.org/taxa/52910-Sarcophagidae",
-    "icon": "bug-outline"
-  },
-  {
-    "title": "Messor barbarus",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/barbaryharvesterant.jpg",
-    "imgAlt": "BarbaryHarvesterAnt",
-    "link": "https://www.inaturalist.org/taxa/118487-Messor-barbarus",
     "icon": "bug-outline"
   },
   {
@@ -224,14 +192,6 @@ const projects = [
     "icon": "bug-outline"
   },
   {
-    "title": "Naupactus leucoloma",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/whitefringedweevil.jpg",
-    "imgAlt": "White-fringedWeevil",
-    "link": "https://www.inaturalist.org/taxa/333624-Naupactus-leucoloma",
-    "icon": "bug-outline"
-  },
-  {
     "title": "Amaranthus retroflexus",
     "category": "flora",
     "imgSrc": "./assets/images/photography/redrootamaranth.jpg",
@@ -272,22 +232,6 @@ const projects = [
     "icon": "skull-outline"
   },
   {
-    "title": "Seira dollfusi",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/springtail.jpg",
-    "imgAlt": "Springtail",
-    "link": "https://www.inaturalist.org/taxa/955719-Seira-dollfusi",
-    "icon": "bug-outline"
-  },
-  {
-    "title": "Chrysolina oricalcia",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/cowparsleyleafbeetle.jpg",
-    "imgAlt": "CowParsleyLeafBeetle",
-    "link": "https://www.inaturalist.org/taxa/499166-Chrysolina-oricalcia",
-    "icon": "bug-outline"
-  },
-  {
     "title": "Sciocoris maculatus",
     "category": "bugs",
     "imgSrc": "./assets/images/photography/stinkbug.jpg",
@@ -310,14 +254,6 @@ const projects = [
     "imgAlt": "Jimsonweed",
     "link": "https://www.inaturalist.org/taxa/55854-Datura-stramonium",
     "icon": "rose-outline"
-  },
-  {
-    "title": "Leiobunum rotundum",
-    "category": "bugs",
-    "imgSrc": "./assets/images/photography/harvestman.jpg",
-    "imgAlt": "harvestman",
-    "link": "https://www.inaturalist.org/taxa/154449-Leiobunum-rotundum",
-    "icon": "bug-outline"
   },
   {
     "title": "Volvopluteus gloiocephalus",

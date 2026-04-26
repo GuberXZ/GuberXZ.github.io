@@ -38,6 +38,34 @@
         padding: 60px 20px 40px;
         }
 
+        .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        }
+
+        .shuffle-btn {
+            background: none;
+            border: 1px solid var(--jet);
+            color: var(--orange-yellow-crayola);
+            font-family: var(--ff-poppins);
+            font-size: 24px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition-1);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .shuffle-btn:hover {
+            background: var(--jet);
+            color: var(--white-2);
+        }
+
         .article-title.centered {
         text-align: center;
          font-size: clamp(48px, 7vw, 72px);
@@ -197,7 +225,12 @@
 <body>
     <article class="portfolio active">
         <header class="masonry-header">
-            <h2 class="h2 article-title">I saw on my wall</h2>
+            <div class="header-inner">
+                <h2 class="h2 article-title">I saw on my wall</h2>
+                <button class="shuffle-btn" onclick="shuffleAndRebuild()"> 
+                <ion-icon name="dice-outline"></ion-icon>
+                </button>
+            </div>
         </header>
     <div class="masonry-layout">
         <div class="masonry-column"> 
@@ -253,9 +286,17 @@
                 <img src="wall_photos/slimyguyonamission.jpg" alt="Item 49">
                 <div class="item-content"><h3>A Slimy Guy on a Mission</h3></div>
             </div>
-            <div class="masonry-item" data-sort-index="49">
-                <img src="wall_photos/roundbeetle.jpg" alt="Item 49">
+            <div class="masonry-item" data-sort-index="53">
+                <img src="wall_photos/roundbeetle.jpg" alt="Item 53">
                 <div class="item-content"><h3>A Round Beetle</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="57">
+                <img src="wall_photos/harvestman.jpg" alt="Item 57">
+                <div class="item-content"><h3>A Harvestman</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="61">
+                <img src="wall_photos/flyingant.jpg" alt="Item 61">
+                <div class="item-content"><h3>A Flying Ant</h3></div>
             </div>
         </div>
 
@@ -312,6 +353,14 @@
                 <img src="wall_photos/bugonstitls.jpg" alt="Item 50">
                 <div class="item-content"><h3>A Bug on a Stilts</h3></div>
             </div>
+            <div class="masonry-item" data-sort-index="54">
+                <img src="wall_photos/springtail.jpg" alt="Item 54">
+                <div class="item-content"><h3>A Small Spring</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="58">
+                <img src="wall_photos/embossedbeetle.jpg" alt="Item 58">
+                <div class="item-content"><h3>A Embossed Beetle</h3></div>
+            </div>
         </div>
 
         <div class="masonry-column">
@@ -367,6 +416,10 @@
                 <img src="wall_photos/weevil.jpg" alt="Item 51">
                 <div class="item-content"><h3>A Weeeeevil</h3></div>
             </div>
+            <div class="masonry-item" data-sort-index="55">
+                <img src="wall_photos/mantis.jpg" alt="Item 55">
+                <div class="item-content"><h3>A Husband Killer</h3></div>
+            </div>
         </div>
         <div class="masonry-column">
             <div class="masonry-item" data-sort-index="4">
@@ -374,16 +427,16 @@
                 <div class="item-content"><h3>A Portuguese millipede</h3></div>
             </div>
             <div class="masonry-item" data-sort-index="8">
-                <img src="wall_photos/apredatoranditsprey.jpg" alt="Item 8">
-                <div class="item-content"><h3>A predator and its prey</h3></div>
+                <img src="wall_photos/fleshfly.jpg" alt="Item 8">
+                <div class="item-content"><h3>A Flesh Fly</h3></div>
             </div>
             <div class="masonry-item" data-sort-index="12">
-                <img src="wall_photos/leggedworm.jpg" alt="Item 12">
-                <div class="item-content"><h3>A Legged worm</h3></div>
+                <img src="wall_photos/apredatoranditsprey.jpg" alt="Item 12">
+                <div class="item-content"><h3>A predator and its prey</h3></div>
             </div>
             <div class="masonry-item" data-sort-index="16">
-                <img src="wall_photos/mintymoth.jpg" alt="Item 16"> 
-                <div class="item-content"><h3>A minty moth</h3></div>
+                <img src="wall_photos/leggedworm.jpg" alt="Item 16">
+                <div class="item-content"><h3>A Legged worm</h3></div>
             </div>
             <div class="masonry-item" data-sort-index="20">
                 <img src="wall_photos/atrashyshell.jpg" alt="Item 20">
@@ -420,6 +473,14 @@
             <div class="masonry-item" data-sort-index="52">
                 <img src="wall_photos/spooder.jpg" alt="Item 52">
                 <div class="item-content"><h3>A Spooder</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="56">
+                <img src="wall_photos/mintymoth.jpg" alt="Item 56"> 
+                <div class="item-content"><h3>A minty moth</h3></div>
+            </div>
+            <div class="masonry-item" data-sort-index="60">
+                <img src="wall_photos/runningspider.jpg" alt="Item 60"> 
+                <div class="item-content"><h3>A running spider</h3></div>
             </div>
         </div>
     </div>
@@ -461,6 +522,25 @@
             resizeTimer = setTimeout(sortMasonry, 250);
         });
         sortMasonry();
+        
+        /** Shuffle function using Fisher-Yates algorithm to randomize the order of items and then rebuild the masonry layout. */
+        const shuffleAndRebuild = () => {
+        const container = document.querySelector('.masonry-layout');
+        const allItems = Array.from(container.querySelectorAll('.masonry-item'));
+
+        // Fisher-Yates shuffle
+        for (let i = allItems.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allItems[i].dataset.sortIndex, allItems[j].dataset.sortIndex] = 
+            [allItems[j].dataset.sortIndex, allItems[i].dataset.sortIndex];
+        }
+        sortMasonry();
+    };
     </script>
+
+    <!-- ionicon link -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
