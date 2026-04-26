@@ -181,10 +181,16 @@
         font-weight: var(--fw-300);
         }
 
-        /* Mobile specific styling */
-        @media (max-width: 800px) {
-            body { padding: 10px; }
+        /* Resolution specific styling */
+        @media (max-width: 1100px) {
             .masonry-layout { gap: 10px; }
+            .masonry-column:nth-child(4) { display: none; }
+        }
+
+        @media (max-width: 700px) {
+            .masonry-layout { gap: 8px; padding: 8px; }
+            .masonry-column:nth-child(3),
+            .masonry-column:nth-child(4) { display: none; }
         }
     </style>
 </head>
@@ -420,45 +426,33 @@
 
     <script>
         const sortMasonry = () => {
-            const breakpoint = 800;
             const container = document.querySelector('.masonry-layout');
             if (!container) return;
             const columnElements = Array.from(container.querySelectorAll('.masonry-column'));
-            const numColumns = columnElements.length;
 
-            if (window.innerWidth < breakpoint) {
-                // Flatten to 1 column for mobile
-                let needsFlattening = false;
-                if (numColumns > 0 && columnElements[0].style.display !== 'none') {
-                    for (const col of columnElements) {
-                        if (col.querySelector('.masonry-item')) { needsFlattening = true; break; }
-                    }
-                }
-                if (needsFlattening) {
-                    const allItems = Array.from(document.querySelectorAll('.masonry-layout .masonry-item'));
-                    allItems.sort((a, b) => parseInt(a.dataset.sortIndex) - parseInt(b.dataset.sortIndex));
-                    columnElements.forEach(column => { column.innerHTML = ''; column.style.display = 'none'; });
-                    allItems.forEach(item => container.appendChild(item));
-                }
-            } else {
-                // Redistribute to 3 columns for desktop
-                const itemsAreFlatInContainer = container.querySelector(':scope > .masonry-item');
-                if (numColumns > 0 && (columnElements[0].style.display === 'none' || itemsAreFlatInContainer)) {
-                    const columnMap = {};
-                    columnElements.forEach((column, index) => {
-                        column.style.display = 'flex';
-                        column.innerHTML = '';
-                        columnMap[index] = column;
-                    });
-                    const allItemsToRedistribute = Array.from(document.querySelectorAll('.masonry-layout .masonry-item'));
-                    allItemsToRedistribute.sort((a, b) => parseInt(a.dataset.sortIndex) - parseInt(b.dataset.sortIndex));
-                    allItemsToRedistribute.forEach(item => {
-                        const sortIndex = parseInt(item.dataset.sortIndex);
-                        const targetColumnIndex = (sortIndex - 1) % numColumns;
-                        columnMap[targetColumnIndex].appendChild(item);
-                    });
-                }
-            }
+            const allItems = Array.from(container.querySelectorAll('.masonry-item'));
+            allItems.sort((a, b) => parseInt(a.dataset.sortIndex) - parseInt(b.dataset.sortIndex));
+
+            const width = window.innerWidth;
+            let numCols;
+            if (width < 500)        numCols = 1;
+            else if (width < 700)   numCols = 2;
+            else if (width < 1100)  numCols = 3;
+            else                    numCols = 4;
+
+            // Reset all columns
+            container.style.flexDirection = 'row';
+            columnElements.forEach((col, i) => {
+                col.style.display = i < numCols ? 'flex' : 'none';
+                col.innerHTML = '';
+            });
+
+            // Distribute items across active columns
+            let colIndex = 0;
+            allItems.forEach(item => {
+                columnElements[colIndex].appendChild(item);
+                colIndex = (colIndex + 1) % numCols;
+            });
         };
 
         let resizeTimer;
